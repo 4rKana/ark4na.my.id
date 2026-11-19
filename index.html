@@ -28,6 +28,7 @@
                 <li><a href="#dossier" class="nav-link active">Dossier</a></li>
                 <li><a href="#akademik" class="nav-link">Academic Record</a></li>
                 <li><a href="#archives" class="nav-link">Archives</a></li>
+                <li><a href="#tasks" class="nav-link">Task Manager</a></li>
             </ul>
         </nav>
 
@@ -136,6 +137,105 @@
                         <li><strong>Email Utama:</strong> <a href="mailto:Aristria91@gmail.com" style="color: var(--ak-blue);">Aristria91@gmail.com</a></li>
                         <li><strong>Jaringan Profesional:</strong> <a href="https://www.linkedin.com/in/arya-ismail-1003b42b4" target="_blank" rel="noopener noreferrer" style="color: var(--ef-yellow);">LinkedIn Profile</a></li>
                     </ul>
+                </div>
+            </section>
+
+            <!-- Bagian 4: Task Manager (Tugas Pertemuan 6) -->
+            <section id="tasks" class="content-section">
+                <h2>Academic Task Manager</h2>
+
+                <div class="task-env-bar">
+                    <span>MODULE: <strong id="env-app-name">-</strong></span>
+                    <span>VERSION: <strong id="env-app-version">-</strong></span>
+                    <span>MODE: <strong id="env-app-mode">-</strong></span>
+                </div>
+
+                <div class="task-stats">
+                    <div class="stat-card">
+                        <span class="stat-label">TOTAL TUGAS</span>
+                        <span class="stat-value" id="stat-total">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">BELUM SELESAI</span>
+                        <span class="stat-value stat-pending" id="stat-pending">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">SELESAI</span>
+                        <span class="stat-value stat-done" id="stat-done">0</span>
+                    </div>
+                </div>
+
+                <form id="task-form" class="task-form">
+                    <h3 id="form-title">Tambah Tugas Kuliah Baru</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="task-title">Judul Tugas</label>
+                            <input type="text" id="task-title" placeholder="Contoh: Tugas Pertemuan 6 - TypeScript & Vite" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-course">Mata Kuliah</label>
+                            <select id="task-course" required>
+                                <option value="Pengembangan Aplikasi Web">Pengembangan Aplikasi Web</option>
+                                <option value="Jaringan Komputer">Jaringan Komputer</option>
+                                <option value="Interaksi Manusia dan Komputer">Interaksi Manusia dan Komputer</option>
+                                <option value="Manajemen Proyek Perangkat Lunak">Manajemen Proyek Perangkat Lunak</option>
+                                <option value="Pengembangan Aplikasi Mobile">Pengembangan Aplikasi Mobile</option>
+                                <option value="Manajemen Basis Data">Manajemen Basis Data</option>
+                                <option value="Intelegensia Buatan">Intelegensia Buatan</option>
+                                <option value="Sosio-Informatika dan Profesionalisme">Sosio-Informatika dan Profesionalisme</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-deadline">Tenggat (Deadline)</label>
+                            <input type="date" id="task-deadline" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-priority">Prioritas</label>
+                            <select id="task-priority" required>
+                                <option value="High">High</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="submit-btn" class="btn-primary">+ Tambah Tugas</button>
+                        <button type="button" id="cancel-edit-btn" class="btn-secondary hidden">Batal Edit</button>
+                    </div>
+                </form>
+
+                <div class="task-filters">
+                    <button type="button" class="filter-btn active" data-filter="ALL">Semua</button>
+                    <button type="button" class="filter-btn" data-filter="Belum Selesai">Belum Selesai</button>
+                    <button type="button" class="filter-btn" data-filter="Selesai">Selesai</button>
+                </div>
+
+                <div id="task-list" class="task-list"></div>
+
+                <div class="tech-docs">
+                    <h3>System Architecture & Toolchain Overview</h3>
+                    <div class="docs-grid">
+                        <div class="doc-card">
+                            <h4>Git &amp; GitHub</h4>
+                            <p>Digunakan sebagai <em>Version Control System</em> untuk melacak riwayat perubahan melalui <strong>commit</strong>, mengembangkan fitur terisolasi lewat <strong>branch</strong>, menggabungkannya dengan <strong>merge / Pull Request</strong>, serta menyelesaikan <em>merge conflict</em>. File <code>.gitignore</code> mencegah <code>node_modules</code>, <code>dist</code>, dan <code>.env</code> ikut terunggah.</p>
+                        </div>
+                        <div class="doc-card">
+                            <h4>npm &amp; Semantic Versioning</h4>
+                            <p><strong>npm</strong> mengelola pustaka proyek melalui <code>package.json</code> dan menjalankan <em>npm scripts</em> (<code>dev</code>, <code>build</code>, <code>preview</code>). Pustaka produksi dicatat di <code>dependencies</code>, sedangkan alat bantu pengembangan seperti Vite dan TypeScript di <code>devDependencies</code> menggunakan pola versi <code>MAJOR.MINOR.PATCH</code> (contoh <code>^5.6.2</code>).</p>
+                        </div>
+                        <div class="doc-card">
+                            <h4>TypeScript (Compiler / Transpiler)</h4>
+                            <p>Menambahkan <em>static typing</em> (primitive, array, interface, type alias, union type, generics) untuk mendeteksi bug sebelum kode dijalankan. Karena browser hanya memahami JavaScript, <strong>TypeScript Compiler (<code>tsc</code>)</strong> memeriksa tipe data sementara <strong>transpiler (esbuild)</strong> mengubah kode <code>.ts</code> menjadi <code>.js</code> standar.</p>
+                        </div>
+                        <div class="doc-card">
+                            <h4>Vite (Dev Server &amp; Bundler)</h4>
+                            <p>Menyediakan <em>development server</em> super cepat berbasis native ES Modules dengan <em>Hot Module Replacement (HMR)</em>. Saat perintah <code>npm run build</code> dijalankan, <strong>bundler (Rollup)</strong> di balik Vite menggabungkan, mengoptimalkan, dan me-minify seluruh file JS/CSS menjadi aset statis siap produksi di folder <code>dist/</code>.</p>
+                        </div>
+                        <div class="doc-card doc-card-wide">
+                            <h4>Environment Variables (.env)</h4>
+                            <p>Menyimpan konfigurasi aplikasi di luar kode sumber. Di Vite, hanya variabel berawalan <code>VITE_</code> (seperti nama dan versi aplikasi non-rahasia) yang diizinkan diakses oleh client melalui <code>import.meta.env</code>. Data sensitif seperti password atau API key rahasia disimpan tanpa prefix <code>VITE_</code>, tidak ditampilkan di browser, dan file <code>.env</code> dikecualikan lewat <code>.gitignore</code> dengan <code>.env.example</code> sebagai dokumentasi template.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
